@@ -69,7 +69,9 @@ public class Main {
                             }
                         }
                         System.out.println("Текущий лидер: " + maxFreq + " (" + maxVal + " раз)");
-                    } catch (InterruptedException ignored) {}
+                    } catch (InterruptedException e) {
+                        System.out.println("Завершение работы потоков");
+                        return;
                 }
             }
         };
@@ -89,8 +91,7 @@ public class Main {
         for (Thread thread : threads) {
             try {
                 thread.join();
-            } catch (InterruptedException ignored) {
-            }
+            } catch (InterruptedException ignored) {}
         }
         calcThread.interrupt();
 
